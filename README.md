@@ -1,64 +1,150 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Mergy API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Requests
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### POST Create user 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+`mergy.test/api/users`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Creates a user profile
 
-## Learning Laravel
+Bodyraw (json)
+```
+    {
+    "id": "ahd123@zod15",
+    "name": "Cornelius",
+    "email": "email15@test.com",
+    "password": "password",
+    "job": "userjob",
+    "cv": "https://url.test",
+    "user_image": "https://url.test",
+    "experiences": [
+        {
+        "job_title": "title",
+        "location": "location",
+        "start_date": "01/08/2022",
+        "end_date": "01/08/2022"
+        },
+        {
+        "job_title": "title",
+        "location": "location",
+        "start_date": "01/08/2022",
+        "end_date": "01/08/2022"
+        }
+    ]
+    }
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### GET Get a user profile
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`mergy.test/api/users/{id}`
 
-## Laravel Sponsors
+Fetch one user profile details
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#### Authorization
+Bearer Token <token>
 
-### Premium Partners
+### PUT Update user details
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+`mergy.test/api/users/{id}`
 
-## Contributing
+Updates a user profile.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+All fields can be updated independently, except the id field
 
-## Code of Conduct
+### Authorization
+Bearer Token <token>
+Bodyraw (json)
+```
+    {
+    "name": "Cornelius",
+    "password": "password",
+    "job": "userjob",
+    "cv": "https://url.test",
+    "user_image": "https://url.test",
+    "experiences": [
+        {
+        "job_title": "title 3",
+        "location": "location",
+        "start_date": "01/12/2022",
+        "end_date": "01/08/2022"
+        },
+        {
+        "job_title": "title",
+        "location": "location",
+        "start_date": "01/08/2022",
+        "end_date": "01/08/2022"
+        }
+    ]
+    }
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### DEL Delete user
 
-## Security Vulnerabilities
+`mergy.test/api/users/`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Delete a user profile.
 
-## License
+#### Authorization
+Bearer Token <token>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Bodyraw (json)
+
+```
+    {
+    "id": "ahd123@zod15"
+    }
+```
+
+### POST Get Bearer Token
+
+`mergy.test/api/login`
+
+Provide a registered email and correct password to get an auth_token
+
+Bodyraw (json)
+
+```
+{
+  "email": "email15@test.com",
+  "password": "password"
+}
+```
+
+### POST Destroy Auth Token
+
+`mergy.test/api/logout`
+
+Make things easier for your teammates with a complete request description.
+
+#### Authorization
+Bearer Token <token>
+
+******************
+
+## Setup Locally
+
+- Clone the repository
+`git clone https://github.com/cornzie/mergy.git`
+
+- Install all the dependencies
+`composer install`
+
+- Set app key
+`php artisan key:generate`
+
+- Setup database (ensure the database exists)
+`php artisan migrate`
+
+- Depending on your local environment, start the server. If using Laravel Valet, skip!
+`php artisan serve`
+
+Fancy using Docker on MacOS?
+- See [here](https://laravel.com/docs/9.x/installation#getting-started-on-macos)
+
+******************
+
+# Server Requirements
+- See [Laravel's standard requirements](https://laravel.com/docs/9.x/deployment#server-requirements)
+- ready to go NGINX conf can be found [here](https://laravel.com/docs/9.x/deployment#nginx)
