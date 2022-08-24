@@ -1,5 +1,20 @@
 # Mergy API
 
+This implements test requirements for mergy.cloud
+It's powered by Laravel.
+
+Some assumptions were made to create a relateable API.
+For instance, I designed this as a job board, where users will sign up and be able to make authenticated (with a bearer token, retrieved by logging in) and unauthenticated requests.
+
+A useful workflow would be
+- Create a profile
+- Login
+- Update the profile
+- Delete/Logout
+
+A postman collection is added in `/APICollections` to help with testing
+
+See below how to setup locally, for testing!
 
 ## Requests
 
