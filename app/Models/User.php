@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        '_id',
+        'job',
+        'cv',
+        'user_image',
     ];
 
     /**
@@ -41,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
 }
